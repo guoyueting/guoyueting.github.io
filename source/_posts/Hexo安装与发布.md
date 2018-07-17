@@ -1,5 +1,6 @@
 ---
 title: Hexo安装与发布
+categories: 工具&配置
 ---
 ## 安装
 1. 安装hexo
