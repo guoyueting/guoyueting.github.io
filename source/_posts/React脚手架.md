@@ -22,22 +22,26 @@ React现在已经有很多脚手架工具，如**create-react-app**，支持一�
 5. 打包上线发版，测试环境线上环境
 6. css预编译及后处理，考虑兼容性写法；
 7. 采用ES6写码，辅助工具，写代码更容易；
+8. 此外，往往后端开发好的接口会部署在测试环境，而不是本地，因此还需要考虑联调时的代理转发。
+
 
 根据以上划分决定选用以下第三方库和工具构成项目的完整技术栈：
 1. react，react-dom;
 2. react-router管理应用路由;
 3. mobx作为JavaScript状态容器，mobx-react将React应用与mobx连接，Mobx相关详情请参见[Mobx官方文档](https://cn.mobx.js.org/)； 
-4. axios库发送ajax请求，解决接口调用问题，请参见[Axios](https://www.kancloud.cn/yunye/axios/234845);
+4. axios库发送ajax请求，解决接口调用问题，请参见[Axios](https://www.kancloud.cn/yunye/axios/234845)
 5. webpack配置;
 6. 安装postcss的autoprefixer;
 7. 需要安装babel，还可以使用lodash等可选辅助类，工具类库提升开发效率；
+8. 代理转发工具选择的是百度BEFE团队开发的[gulp-bird](https://www.npmjs.com/package/gulp-bird)。
 
 ### 组件划分
 React组件化开发原则是组件负责渲染UI，组件不同状态对应不同UI，通常遵循以下组件设计思路：
 1. 路由组件：负责项目路由，可嵌套;
 1. 布局组件：仅仅涉及应用UI界面结构的组件，不涉及任何业务逻辑，数据请求及操作;
 2. 容器组件：负责获取数据，处理业务逻辑，通常在render()函数内返回展示型组件；
-3. 组件：指抽象出的可重用的UI独立组件，通常是无状态组件;
+3. UI组件：指抽象出的可重用的UI独立组件，通常是无状态组件;
+
 以本项目section的组件划分为例，index.js是入口文件，同时也承担了路由组件的角色，layout是布局组件，仅仅负责UI界面结构，homeindex是容器组件，是首页的业务逻辑，islider则是轮播图的独立组件，可复用。
 ![组件划分](http://pbzqi3myf.bkt.clouddn.com/%E7%BB%84%E4%BB%B6.png "组件划分")
 
@@ -198,8 +202,10 @@ export default {
 }
 ```
 
-**@observer** 函数/修饰器用于react组件。通过mobx-react依赖包来提供。它通过mobx.autorun来包装了组件的render函数，以确保组件的render函数在任何数据的更改是强制重新渲染
+**@observer** 函数/修饰器用于react组件。通过mobx-react依赖包来提供。它通过mobx.autorun来包装了组件的render函数，以确保组件的render函数在任何数据的更改是强制重新渲染。
+
 **Autorun**是用在一些你想要产生一个不用观察者参与的被动调用函数里面。当autorun被使用的时候，一旦依赖项发生变化，autorun提供的函数就会被执行。
+
 **action**是任何改变状态的事物。
 
 ```
@@ -261,7 +267,7 @@ export let getHotList = function (data) {
 
 ### 3.4 代理转发gulp-bird
 [gulp-bird](https://www.npmjs.com/package/gulp-bird)是由百度BEFE团队开发的代理转发工具，并不是一个gulp插件，在bird基础上进行了一些优化并发布到了npm，配置方法和bird一样。
-配置目标服务器host和port等
+配置目标服务器host和port等，参考如下。
 
 ```
 /**

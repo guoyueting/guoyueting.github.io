@@ -75,6 +75,13 @@ pagination_dir: page
 ## Themes: https://hexo.io/themes/
 theme: next
 
+# Show number of visitors to each article.
+# You can visit https://leancloud.cn get AppID and AppKey.
+leancloud_visitors:
+  enable: true
+  app_id: eOq9hCiTRDegbokP7BzoYXL8-gzGzoHsz
+  app_key: v1wNe5gKOPXWsY72dil1nu2l
+
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
