@@ -1,5 +1,5 @@
 ---
-title: React应用架构设计与从0到1最佳实践
+title: 脚手架架构设计——React&Mobx从0到1最佳实践
 date: 2018-07-01 11:56:13
 categories: React全家桶
 ---
@@ -433,6 +433,10 @@ module.exports = function(env) {
 2. 测试，考虑jest集成应用测试
 3. 函数库，如ramda，underscore； 
 4. 调试工具，reactotron,react-devtools
+
+
+## 五、Demo地址
+最后，附上demo地址：`https://github.com/guoyueting/react-mobx-seed`
 
 
 

@@ -110,16 +110,16 @@
 
   <meta name="description" content="一、前言React现在已经有很多脚手架工具，如create-react-app，支持一键创建一个React应用项目结构，很方便，但是享受方便的同时，也失去了对项目架构及技术栈完整学习的机会，而且通常脚手架创建的应用技术架构并不能完全满足我们的业务需求，需要我们自己修改，完善，所以如果希望对项目架构有更深掌控，最好还是从0到1理解一个项目。 二、项目结构与技术栈文件目录这次应用架构设计不使用任何脚手">
 <meta property="og:type" content="article">
-<meta property="og:title" content="React应用架构设计与从0到1最佳实践">
+<meta property="og:title" content="应用架构设计——React&amp;Mobx从0到1最佳实践">
 <meta property="og:url" content="http://yoursite.com/2018/07/01/React脚手架/index.html">
 <meta property="og:site_name" content="暴走的果果">
 <meta property="og:description" content="一、前言React现在已经有很多脚手架工具，如create-react-app，支持一键创建一个React应用项目结构，很方便，但是享受方便的同时，也失去了对项目架构及技术栈完整学习的机会，而且通常脚手架创建的应用技术架构并不能完全满足我们的业务需求，需要我们自己修改，完善，所以如果希望对项目架构有更深掌控，最好还是从0到1理解一个项目。 二、项目结构与技术栈文件目录这次应用架构设计不使用任何脚手">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://pbzqi3myf.bkt.clouddn.com/%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95.png">
 <meta property="og:image" content="http://pbzqi3myf.bkt.clouddn.com/%E7%BB%84%E4%BB%B6.png">
-<meta property="og:updated_time" content="2018-07-17T10:43:58.000Z">
+<meta property="og:updated_time" content="2018-07-18T03:05:02.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="React应用架构设计与从0到1最佳实践">
+<meta name="twitter:title" content="应用架构设计——React&amp;Mobx从0到1最佳实践">
 <meta name="twitter:description" content="一、前言React现在已经有很多脚手架工具，如create-react-app，支持一键创建一个React应用项目结构，很方便，但是享受方便的同时，也失去了对项目架构及技术栈完整学习的机会，而且通常脚手架创建的应用技术架构并不能完全满足我们的业务需求，需要我们自己修改，完善，所以如果希望对项目架构有更深掌控，最好还是从0到1理解一个项目。 二、项目结构与技术栈文件目录这次应用架构设计不使用任何脚手">
 <meta name="twitter:image" content="http://pbzqi3myf.bkt.clouddn.com/%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95.png">
 
@@ -138,7 +138,7 @@
   };
 </script>
 
-  <title>React应用架构设计与从0到1最佳实践 | 暴走的果果</title>
+  <title>应用架构设计——React&Mobx从0到1最佳实践 | 暴走的果果</title>
   
 
 
@@ -300,7 +300,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">React应用架构设计与从0到1最佳实践
+          <h1 class="post-title" itemprop="name headline">应用架构设计——React&Mobx从0到1最佳实践
               
             
           </h1>
@@ -342,7 +342,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-07-17 18:43:58" itemprop="dateModified" datetime="2018-07-17T18:43:58+08:00">2018-07-17</time>
+                <time title="修改时间：2018-07-18 11:05:02" itemprop="dateModified" datetime="2018-07-18T11:05:02+08:00">2018-07-18</time>
               
             
           </span>
@@ -453,6 +453,7 @@
 <li>函数库，如ramda，underscore； </li>
 <li>调试工具，reactotron,react-devtools</li>
 </ol>
+<h2 id="五、Demo地址"><a href="#五、Demo地址" class="headerlink" title="五、Demo地址"></a>五、Demo地址</h2><p>最后，附上demo地址：<code>https://github.com/guoyueting/react-mobx-seed</code></p>
 
       
     </div>
@@ -480,8 +481,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/01/Alloy Conf2017大会/" rel="next" title="Alloy team2017大会">
-                <i class="fa fa-chevron-left"></i> Alloy team2017大会
+              <a href="/2018/06/23/Hexo安装与发布/" rel="next" title="Hexo安装与发布">
+                <i class="fa fa-chevron-left"></i> Hexo安装与发布
               </a>
             
           </div>
@@ -489,6 +490,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/07/01/Alloy Conf2017大会/" rel="prev" title="Alloy team2017大会">
+                Alloy team2017大会 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -624,7 +629,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、前言"><span class="nav-number">1.</span> <span class="nav-text">一、前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、项目结构与技术栈"><span class="nav-number">2.</span> <span class="nav-text">二、项目结构与技术栈</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文件目录"><span class="nav-number">2.1.</span> <span class="nav-text">文件目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#技术栈"><span class="nav-number">2.2.</span> <span class="nav-text">技术栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组件划分"><span class="nav-number">2.3.</span> <span class="nav-text">组件划分</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、项目搭建步骤"><span class="nav-number">3.</span> <span class="nav-text">三、项目搭建步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1准备工作"><span class="nav-number">3.1.</span> <span class="nav-text">3.1准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-路由和数据状态管理"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 路由和数据状态管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-Axios库发送ajax请求"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 Axios库发送ajax请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-代理转发gulp-bird"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 代理转发gulp-bird</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5webpack配置打包"><span class="nav-number">3.5.</span> <span class="nav-text">3.5webpack配置打包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-6打包指令配置"><span class="nav-number">3.6.</span> <span class="nav-text">3.6打包指令配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、未来改进"><span class="nav-number">4.</span> <span class="nav-text">四、未来改进</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、前言"><span class="nav-number">1.</span> <span class="nav-text">一、前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、项目结构与技术栈"><span class="nav-number">2.</span> <span class="nav-text">二、项目结构与技术栈</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文件目录"><span class="nav-number">2.1.</span> <span class="nav-text">文件目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#技术栈"><span class="nav-number">2.2.</span> <span class="nav-text">技术栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组件划分"><span class="nav-number">2.3.</span> <span class="nav-text">组件划分</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、项目搭建步骤"><span class="nav-number">3.</span> <span class="nav-text">三、项目搭建步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1准备工作"><span class="nav-number">3.1.</span> <span class="nav-text">3.1准备工作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-路由和数据状态管理"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 路由和数据状态管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-Axios库发送ajax请求"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 Axios库发送ajax请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-代理转发gulp-bird"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 代理转发gulp-bird</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5webpack配置打包"><span class="nav-number">3.5.</span> <span class="nav-text">3.5webpack配置打包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-6打包指令配置"><span class="nav-number">3.6.</span> <span class="nav-text">3.6打包指令配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、未来改进"><span class="nav-number">4.</span> <span class="nav-text">四、未来改进</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、Demo地址"><span class="nav-number">5.</span> <span class="nav-text">五、Demo地址</span></a></li></ol></div>
             
 
           </div>
