@@ -77,11 +77,13 @@ theme: next
 
 # Show number of visitors to each article.
 # You can visit https://leancloud.cn get AppID and AppKey.
-leancloud_visitors:
+leancloud_counter_security:
   enable: true
   app_id: eOq9hCiTRDegbokP7BzoYXL8-gzGzoHsz
   app_key: v1wNe5gKOPXWsY72dil1nu2l
-
+  # Dependencies: https://github.com/theme-next/hexo-leancloud-counter-security
+  security: true
+  betterPerformance: false
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
