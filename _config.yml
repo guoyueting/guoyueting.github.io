@@ -84,6 +84,7 @@ leancloud_counter_security:
   # Dependencies: https://github.com/theme-next/hexo-leancloud-counter-security
   security: true
   betterPerformance: false
+
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
