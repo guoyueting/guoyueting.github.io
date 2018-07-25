@@ -117,7 +117,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://pbzqi3myf.bkt.clouddn.com/%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95.png">
 <meta property="og:image" content="http://pbzqi3myf.bkt.clouddn.com/%E7%BB%84%E4%BB%B6.png">
-<meta property="og:updated_time" content="2018-07-18T06:06:59.000Z">
+<meta property="og:updated_time" content="2018-07-19T05:06:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="脚手架架构设计——React&amp;Mobx从0到1最佳实践">
 <meta name="twitter:description" content="一、前言React现在已经有很多脚手架工具，如create-react-app，支持一键创建一个React应用项目结构，很方便，但是享受方便的同时，也失去了对项目架构及技术栈完整学习的机会，而且通常脚手架创建的应用技术架构并不能完全满足我们的业务需求，需要我们自己修改，完善，所以如果希望对项目架构有更深掌控，最好还是从0到1理解一个项目。 二、项目结构与技术栈文件目录这次应用架构设计不使用任何脚手">
@@ -342,7 +342,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-07-18 14:06:59" itemprop="dateModified" datetime="2018-07-18T14:06:59+08:00">2018-07-18</time>
+                <time title="修改时间：2018-07-19 13:06:44" itemprop="dateModified" datetime="2018-07-19T13:06:44+08:00">2018-07-19</time>
               
             
           </span>
@@ -395,6 +395,17 @@
       
         <h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>React现在已经有很多脚手架工具，如<strong>create-react-app</strong>，支持一键创建一个React应用项目结构，很方便，但是享受方便的同时，也失去了对项目架构及技术栈完整学习的机会，而且通常脚手架创建的应用技术架构并不能完全满足我们的业务需求，需要我们自己修改，完善，所以如果希望对项目架构有更深掌控，最好还是从0到1理解一个项目。</p>
 <h2 id="二、项目结构与技术栈"><a href="#二、项目结构与技术栈" class="headerlink" title="二、项目结构与技术栈"></a>二、项目结构与技术栈</h2><h3 id="文件目录"><a href="#文件目录" class="headerlink" title="文件目录"></a>文件目录</h3><p>这次应用架构设计不使用任何脚手架，需要自己创建每一个文件，引入每一个技术和三方库，最终形成完整的应用，包括选择的完整技术栈。<br>项目结构图如下：1. src为应用源代码目录； 2. webpack.config.js为webpack配置入口文件； 3. package.json为项目依赖管理文件； 4. .babelrc文件，babel的配置文件，使用babel编译React和JavaScript代码； 5.README.md为项目说明文档； 6.bird-config是gulp-bird转发工具的配置文件；7.postcss.config.js是postcss的配置文件</p>
+<p><strong>Feature</strong></p>
+<ul>
+<li>可以解析JSX语法</li>
+<li>可以解析ES6语法新特性</li>
+<li>支持SCSS预处理器</li>
+<li>单独分离CSS样式文件</li>
+<li>支持文件MD5戳，解决文件缓存问题</li>
+<li>支持图片、图标字体等资源的编译</li>
+<li>区分开发环境和生产环境</li>
+<li>分离业务功能代码和公共依赖代码</li>
+</ul>
 <p><img src="http://pbzqi3myf.bkt.clouddn.com/%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95.png" alt="文件目录" title="文件目录"></p>
 <h3 id="技术栈"><a href="#技术栈" class="headerlink" title="技术栈"></a>技术栈</h3><p>对整个技术栈进行分析，要考虑哪几个方面呢？</p>
 <ol>
@@ -496,6 +507,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2018/07/25/常用的CSS小技巧（一）/" rel="prev" title="常用的CSS小技巧（一）">
+                常用的CSS小技巧（一） <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -573,7 +588,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-count">3</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -592,7 +607,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-count">3</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>

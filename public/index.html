@@ -277,6 +277,202 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/25/常用的CSS小技巧（一）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="国悦婷">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="暴走的果果">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/25/常用的CSS小技巧（一）/" itemprop="url">
+                  常用的CSS小技巧（一）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-07-25 18:44:19 / 修改时间：18:44:47" itemprop="dateCreated datePublished" datetime="2018-07-25T18:44:19+08:00">2018-07-25</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/CSS/" itemprop="url" rel="index"><span itemprop="name">CSS</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>实际开发过程中会遇到一些需要用CSS小技巧处理的布局问题，现在分享几个个人工作中遇到的小问题和解决方案。</p>
+<h2 id="1-inline元素间的空白间隙"><a href="#1-inline元素间的空白间隙" class="headerlink" title="1.inline元素间的空白间隙"></a>1.inline元素间的空白间隙</h2><p>这里要介绍一个神器<strong>font-size:0</strong>。<br>如果你写了个列表，因为元素节点有文本节点，在缩进代码时会占据宽度，比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">    &lt;li&gt;我是第一项&lt;/li&gt;</span><br><span class="line">    &lt;li&gt;我是第二项&lt;/li&gt;</span><br><span class="line">    &lt;li&gt;我是第三项&lt;/li&gt;</span><br><span class="line">    &lt;li&gt;我是第四项&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br></pre></td></tr></table></figure>
+<p>设置了CSS</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">    ul &#123;</span><br><span class="line">        list-style: none;</span><br><span class="line">    &#125;</span><br><span class="line">    li &#123;</span><br><span class="line">        width: 25%;</span><br><span class="line">        display: inline-block;</span><br><span class="line">        background: green;</span><br><span class="line">        text-align: center;</span><br><span class="line">        height: 40px;</span><br><span class="line">        line-height: 40px;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+<p>就会发现<br><img src="http://pbzqi3myf.bkt.clouddn.com/font-size0.png" alt="有空白间隙"><br>我们为了页面代码的整洁可读性，往往会设置一些适当的缩进、换行，但当元素的display为inline或者inline-block的时候，这些缩进、换行就会产生空白，所以出现上述问题。虽然还有其他方法能解决我们因为缩进、换行而产生的问题，但此时，最合适的方法就是给li的父级ul设置： <strong>font-size: 0</strong>; 给li设置：font-size: 16px; 如此就达到了所需效果<br><img src="http://pbzqi3myf.bkt.clouddn.com/font-size1.png" alt="空白间隙消失啦~"></p>
+<p>图片间的间隙问题也是因为换行、缩进。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">     &lt;img src=&quot;pic1.jpg&quot;&gt;</span><br><span class="line">     &lt;img src=&quot;pic2.jpg&quot;&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<p>如上，图片出现间隙后，在div设置<strong>font-size:0</strong>，间隙就会消失。</p>
+<h2 id="2-图片等比缩放"><a href="#2-图片等比缩放" class="headerlink" title="2.图片等比缩放"></a>2.图片等比缩放</h2><p>在做项目时遇到轮播图的图片从某服务器获取的情况，但图片大小比例却是不定的，这种情况该如何保证图片按比例显示？或者在移动端场景下，如何做图片的响应性布局？</p>
+<p>在CSS3中，可使用<code>background-size</code>来解决针对响应性布局的背景图片自适应。</p>
+<ul>
+<li>浏览器支持的程度：<code>IE9+, Firefox4+, opera, chrome, safari5+</code></li>
+<li>基本语法：<code>background-size: length | percentage | cover | contain</code></li>
+</ul>
+<ol>
+<li><code>length</code>该属性值是设置背景图像的宽度和高度的，第一个值是宽度，第二个值是设置高度的。如果只设置第一个值，那么第二个值会自动转换为 “auto”；<strong>调整图片到指定大小；</strong></li>
+<li><code>percentage</code>该属性是以父元素的百分比来设置图片的宽度和高度的，第一个值是宽度，第二个值是高度。如果只设置一个值，那么第二个值会被设置为 “auto”；<strong>调整图片到指定大小，百分比相对于包含元素的尺寸。</strong></li>
+<li><code>cover</code>把背景图像扩展至足够大，以使背景图像完全覆盖背景区域。<strong>扩展图片来填满元素（保持像素的长宽比）；</strong></li>
+<li><code>contain</code>把图像扩展至最大尺寸，以使宽度和高度完全适应内容区域。 <strong>缩小图片来适应元素的尺寸（保持像素的长宽比）</strong></li>
+</ol>
+<p>那究竟是怎么使用的呢？举个🌰</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// html部分</span><br><span class="line">&lt;div class=&quot;bsize1&quot;&gt;&lt;/div&gt;</span><br><span class="line">// CSS部分</span><br><span class="line">.bsize1 &#123;</span><br><span class="line">	position: relative;</span><br><span class="line">	width: 28%;</span><br><span class="line">	height: 0;</span><br><span class="line">	padding-bottom: 17.5%;</span><br><span class="line">	overflow: hidden;</span><br><span class="line">	background-position: center center;</span><br><span class="line">	background-repeat: no-repeat;</span><br><span class="line">	background-size: cover;</span><br><span class="line">	border: 1px solid #e2e5e7 !important;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="3-文字折行"><a href="#3-文字折行" class="headerlink" title="3.文字折行"></a>3.文字折行</h2><p>单行文本溢出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">overflow: hidden;</span><br><span class="line">text-overflow:ellipsis;</span><br><span class="line">white-space: nowrap;</span><br></pre></td></tr></table></figure>
+<p>多行文本溢出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">display: -webkit-box;</span><br><span class="line">-webkit-box-orient: vertical;</span><br><span class="line">-webkit-line-clamp: 3;</span><br><span class="line">overflow: hidden;</span><br></pre></td></tr></table></figure>
+<p><code>-webkit-line-clamp</code>用来限制在一个块元素显示的文本的行数。 为了实现该效果，它需要组合其他的WebKit属性。常见结合属性：<br><code>display: -webkit-box;</code>必须结合的属性 ，将对象作为弹性伸缩盒子模型显示 。<br><code>-webkit-box-orient</code> 必须结合的属性 ，设置或检索伸缩盒对象的子元素的排列方式 。</p>
+<h2 id="4-calc"><a href="#4-calc" class="headerlink" title="4.calc()"></a>4.calc()</h2><p>整体高度自适应布局怎么实现？在讲calc()之前先说一下vh和vw：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">vw   相对于视口的宽度。视口被均分为100单位的vw</span><br><span class="line">vh   相对于视口的高度。视口被均分为100单位的vh</span><br><span class="line">vmax 相对于视口的宽度或高度中较大的那个。其中最大的那个被均分为100单位的vmax</span><br><span class="line">vmin 相对于视口的宽度或高度中较小的那个。其中最小的那个被均分为100单位的vmin</span><br></pre></td></tr></table></figure>
+<ul>
+<li>calc 是 css3提供的一个在css文件中计算值的函数：用于动态计算长度值。</li>
+<li>需要注意的是，运算符前后都需要保留一个空格，例如：width: calc(100% - 10px)；</li>
+<li>任何长度值都可以使用calc()函数进行计算；</li>
+<li>calc()函数支持 “+”, “-“, “*”, “/“ 运算；</li>
+<li>calc()函数使用标准的数学运算优先级规则；</li>
+</ul>
+<p><strong>注意！</strong></p>
+<p><strong>如果用了CSS预处理器（LESS/SCSS）会被它们先解析，这时需要禁用解析calc(~ ‘100vh - 64px’)</strong></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/01/React脚手架/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -340,7 +536,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2018-07-18 14:06:59" itemprop="dateModified" datetime="2018-07-18T14:06:59+08:00">2018-07-18</time>
+                <time title="修改时间：2018-07-19 13:06:44" itemprop="dateModified" datetime="2018-07-19T13:06:44+08:00">2018-07-19</time>
               
             
           </span>
@@ -395,6 +591,17 @@
           
             <h2 id="一、前言"><a href="#一、前言" class="headerlink" title="一、前言"></a>一、前言</h2><p>React现在已经有很多脚手架工具，如<strong>create-react-app</strong>，支持一键创建一个React应用项目结构，很方便，但是享受方便的同时，也失去了对项目架构及技术栈完整学习的机会，而且通常脚手架创建的应用技术架构并不能完全满足我们的业务需求，需要我们自己修改，完善，所以如果希望对项目架构有更深掌控，最好还是从0到1理解一个项目。</p>
 <h2 id="二、项目结构与技术栈"><a href="#二、项目结构与技术栈" class="headerlink" title="二、项目结构与技术栈"></a>二、项目结构与技术栈</h2><h3 id="文件目录"><a href="#文件目录" class="headerlink" title="文件目录"></a>文件目录</h3><p>这次应用架构设计不使用任何脚手架，需要自己创建每一个文件，引入每一个技术和三方库，最终形成完整的应用，包括选择的完整技术栈。<br>项目结构图如下：1. src为应用源代码目录； 2. webpack.config.js为webpack配置入口文件； 3. package.json为项目依赖管理文件； 4. .babelrc文件，babel的配置文件，使用babel编译React和JavaScript代码； 5.README.md为项目说明文档； 6.bird-config是gulp-bird转发工具的配置文件；7.postcss.config.js是postcss的配置文件</p>
+<p><strong>Feature</strong></p>
+<ul>
+<li>可以解析JSX语法</li>
+<li>可以解析ES6语法新特性</li>
+<li>支持SCSS预处理器</li>
+<li>单独分离CSS样式文件</li>
+<li>支持文件MD5戳，解决文件缓存问题</li>
+<li>支持图片、图标字体等资源的编译</li>
+<li>区分开发环境和生产环境</li>
+<li>分离业务功能代码和公共依赖代码</li>
+</ul>
 <p><img src="http://pbzqi3myf.bkt.clouddn.com/%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95.png" alt="文件目录" title="文件目录"></p>
 <h3 id="技术栈"><a href="#技术栈" class="headerlink" title="技术栈"></a>技术栈</h3><p>对整个技术栈进行分析，要考虑哪几个方面呢？</p>
 <ol>
@@ -761,7 +968,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-count">3</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -780,7 +987,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-count">3</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>

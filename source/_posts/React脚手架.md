@@ -11,6 +11,16 @@ React现在已经有很多脚手架工具，如**create-react-app**，支持一�
 这次应用架构设计不使用任何脚手架，需要自己创建每一个文件，引入每一个技术和三方库，最终形成完整的应用，包括选择的完整技术栈。
 项目结构图如下：1. src为应用源代码目录； 2. webpack.config.js为webpack配置入口文件； 3. package.json为项目依赖管理文件； 4. .babelrc文件，babel的配置文件，使用babel编译React和JavaScript代码； 5.README.md为项目说明文档； 6.bird-config是gulp-bird转发工具的配置文件；7.postcss.config.js是postcss的配置文件
 
+**Feature**
++ 可以解析JSX语法
++ 可以解析ES6语法新特性
++ 支持SCSS预处理器
++ 单独分离CSS样式文件
++ 支持文件MD5戳，解决文件缓存问题
++ 支持图片、图标字体等资源的编译
++ 区分开发环境和生产环境
++ 分离业务功能代码和公共依赖代码
+
 ![文件目录](http://pbzqi3myf.bkt.clouddn.com/%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95.png "文件目录")
 
 ### 技术栈
