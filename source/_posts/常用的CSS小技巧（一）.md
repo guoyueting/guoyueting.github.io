@@ -36,7 +36,7 @@ categories: CSS
 ```
 就会发现
 ![有空白间隙](http://pbzqi3myf.bkt.clouddn.com/font-size0.png)
-我们为了页面代码的整洁可读性，往往会设置一些适当的缩进、换行，但当元素的display为inline或者inline-block的时候，这些缩进、换行就会产生空白，所以出现上述问题。虽然还有其他方法能解决我们因为缩进、换行而产生的问题，但此时，最合适的方法就是给li的父级ul设置： **font-size: 0**; 给li设置：font-size: 16px; 如此就达到了所需效果
+我们为了页面代码的整洁可读性，往往会设置一些适当的缩进、换行，但当元素的display为inline或者inline-block的时候，这些缩进、换行就会产生空白，所以出现上述问题。虽然还有其他方法能解决我们因为缩进、换行而产生的问题，但此时，最合适的方法就是给li的父级ul设置**font-size: 0**， 给li设置**font-size: 16px**，如此就达到了所需效果
 ![空白间隙消失啦~](http://pbzqi3myf.bkt.clouddn.com/font-size1.png)
 
 图片间的间隙问题也是因为换行、缩进。
@@ -56,6 +56,7 @@ categories: CSS
 
 + 浏览器支持的程度：`IE9+, Firefox4+, opera, chrome, safari5+`
 + 基本语法：`background-size: length | percentage | cover | contain`
+
 
 1. `length`该属性值是设置背景图像的宽度和高度的，第一个值是宽度，第二个值是设置高度的。如果只设置第一个值，那么第二个值会自动转换为 “auto”；**调整图片到指定大小；**
 2. `percentage`该属性是以父元素的百分比来设置图片的宽度和高度的，第一个值是宽度，第二个值是高度。如果只设置一个值，那么第二个值会被设置为 “auto”；**调整图片到指定大小，百分比相对于包含元素的尺寸。**
