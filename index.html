@@ -277,6 +277,282 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/27/前端性能优化——掘金小册阅读整理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="国悦婷">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="暴走的果果">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/27/前端性能优化——掘金小册阅读整理/" itemprop="url">
+                  前端性能优化——掘金小册学习笔记
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2018-10-27 14:31:10 / 修改时间：15:16:18" itemprop="dateCreated datePublished" datetime="2018-10-27T14:31:10+08:00">2018-10-27</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/性能优化/" itemprop="url" rel="index"><span itemprop="name">性能优化</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="从一道面试题说起"><a href="#从一道面试题说起" class="headerlink" title="从一道面试题说起"></a>从一道面试题说起</h1><blockquote>
+<p>从输入 URL 到页面加载完成，发生了什么？</p>
+</blockquote>
+<p>首先我们需要通过 DNS（域名解析系统）将 URL 解析为对应的 IP 地址，然后与这个 IP 地址确定的那台服务器建立起 TCP 网络连接，随后我们向服务端抛出我们的 HTTP 请求，服务端处理完我们的请求之后，把目标数据放在 HTTP 响应里返回给客户端，拿到响应数据的浏览器就可以开始走一个渲染的流程。渲染完毕，页面便呈现给了用户，并时刻等待响应用户的操作（如下图所示）<br><img src="http://pbzqi3myf.bkt.clouddn.com/1.png" alt="1" title="1"></p>
+<ul>
+<li>DNS 解析</li>
+<li>TCP 连接</li>
+<li>HTTP 请求抛出</li>
+<li>服务端处理请求，HTTP 响应返回</li>
+<li>浏览器拿到响应数据，解析响应内容，把解析的结果展示给用户</li>
+</ul>
+<h3 id="各个击破"><a href="#各个击破" class="headerlink" title="各个击破"></a>各个击破</h3><ul>
+<li>网络层面的性能优化</li>
+</ul>
+<ol>
+<li>DNS 解析花时间，能不能尽量减少解析次数或者把解析前置？<br>能——浏览器 DNS 缓存和 DNS prefetch（后端）</li>
+<li>TCP 每次的三次握手都急死人，有没有解决方案？<br>有——长连接、预连接、接入 SPDY 协议（后端）</li>
+<li>那么 HTTP 请求呢？<br>在减少请求次数和减小请求体积方面，是不是可以做些工作呢</li>
+<li>资源所在服务器是不是越近越好？<br>部署时就把静态资源放在离我们更近的 CDN 上是不是就能更快一些？</li>
+</ol>
+<ul>
+<li>浏览器端的性能优化<br>前端工程师一展拳脚的地方——资源加载优化、服务端渲染、浏览器缓存机制的利用、DOM 树的构建、网页排版和渲染过程、回流与重绘的考量、DOM 操作的合理规避等等<br><img src="http://pbzqi3myf.bkt.clouddn.com/2.png" alt="2" title="2"></li>
+</ul>
+<h2 id="网络篇1：webpack性能调优"><a href="#网络篇1：webpack性能调优" class="headerlink" title="网络篇1：webpack性能调优"></a>网络篇1：webpack性能调优</h2><p>我们从输入 URL 到显示页面这个过程中，涉及到网络层面的，有三个主要过程：</p>
+<ul>
+<li>DNS 解析</li>
+<li>TCP 连接</li>
+<li><strong style="color: red">HTTP 请求/响应</strong></li>
+</ul>
+<p>前端工程师优化方向——<strong style="color: red">HTTP 请求/响应</strong></p>
+<ul>
+<li>减少请求次数</li>
+<li>减少单次请求所花费的时间<br><img src="http://pbzqi3myf.bkt.clouddn.com/3.png" alt="3" title="3"></li>
+</ul>
+<p>没错，这就是我们每天用构建工具在做的事情。时下主流构建工具主要是webpack。<br><img src="http://pbzqi3myf.bkt.clouddn.com/4.png" alt="4" title="4"></p>
+<p>包组成可视化工具<br><img src="http://pbzqi3myf.bkt.clouddn.com/5.png" alt="5" title="5"></p>
+<h2 id="网络篇2：图片优化——质量与性能的博弈"><a href="#网络篇2：图片优化——质量与性能的博弈" class="headerlink" title="网络篇2：图片优化——质量与性能的博弈"></a>网络篇2：图片优化——质量与性能的博弈</h2><p>《高性能网站建设指南》的作者 Steve Souders 曾在 2013 年的一篇博客中提到：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;strong style=&quot;color: gray&quot;&gt;我的大部分性能优化工作都集中在 JavaScript 和 CSS 上，从早期的 Move Scripts to the Bottom 和 Put Stylesheets at the Top 规则。为了强调这些规则的重要性，我甚至说过，“JS 和 CSS 是页面上最重要的部分”。 几个月后，我意识到这是错误的。图片才是页面上最重要的部分。 我关注 JS 和 CSS 的重点也是如何能够更快地下载图片。图片是用户可以直观看到的。他们并不会关注 JS 和 CSS。确实，JS 和 CSS 会影响图片内容的展示，尤其是会影响图片的展示方式（比如图片轮播，CSS 背景图和媒体查询）。但是我认为 JS 和 CSS 只是展示图片的方式。在页面加载的过程中，应当先让图片和文字先展示，而不是试图保证 JS 和 CSS 更快下载完成。&lt;/strong&gt;</span><br></pre></td></tr></table></figure>
+<p>雅虎军规和 Google 官方的最佳实践也都将图片优化列为前端性能优化必不可少的环节——图片优化的优先级可见一斑。<br>图片优化？——权衡，图片体积压缩-&gt;牺牲部分成像质量。</p>
+<ul>
+<li><strong style="color: red;">关键点：寻求质量与性能之间的平衡点</strong></li>
+</ul>
+<p>截止到 2018 年 10月，过去一年总的 web 资源的平均请求体积是这样的：<br><img src="http://pbzqi3myf.bkt.clouddn.com/6.png" alt="6" title="6"></p>
+<p>具体到图片这一类的资源，平均请求体积<br><img src="http://pbzqi3myf.bkt.clouddn.com/7.png" alt="7" title="7"></p>
+<p>当然，随着我们工程师在性能方面所做的努力越来越有成效，平均来说，不管是资源总量还是图片体积，都在往越来越轻量的方向演化。这是一种值得肯定的进步。<br>但同时我们不得不承认，如图所示的这个图片体积，依然是太大了。图片在所有资源中所占的比重，也足够“触目惊心”了。为了改变这个现状，我们必须把图片优化提上日程。</p>
+<h3 id="不同场景下的图片方案选型"><a href="#不同场景下的图片方案选型" class="headerlink" title="不同场景下的图片方案选型"></a>不同场景下的图片方案选型</h3><p>常用的格式：JPEG/JPG、PNG、WebP、Base64、SVG </p>
+<ul>
+<li><p>前置知识：在计算机中，像素用二进制数来表示。不同的图片格式中像素与二进制位数之间的对应关系是不同的。一个像素对应的二进制位数越多，它可以表示的颜色种类就越多，成像效果也就越细腻，文件体积相应也会越大。 一个二进制位表示两种颜色（0|1 对应黑|白），如果一种图片格式对应的二进制位数有 n 个，那么它就可以呈现 2^n 种颜色</p>
+</li>
+<li><p>Joint Photographic Experts Group——联合图像专家小组<br>“JPEG标准”，针对图像的压缩而制定的标准，使用JPEG标准压缩的图片文件，被称为“JPEG文件”，这种文件的扩展名通常是JPG、JPEG、JPE、JFIF以及JIF</p>
+</li>
+</ul>
+<p><img src="http://pbzqi3myf.bkt.clouddn.com/8.png" alt="8" title="8"><br><img src="http://pbzqi3myf.bkt.clouddn.com/9.png" alt="9" title="0"><br><img src="http://pbzqi3myf.bkt.clouddn.com/10.png" alt="10" title="10"><br><img src="http://pbzqi3myf.bkt.clouddn.com/11.png" alt="11" title="11"><br><img src="http://pbzqi3myf.bkt.clouddn.com/12.png" alt="12" title="12"></p>
+<h2 id="存储篇1：浏览器缓存机制"><a href="#存储篇1：浏览器缓存机制" class="headerlink" title="存储篇1：浏览器缓存机制"></a>存储篇1：浏览器缓存机制</h2><p>缓存可以减少网络 IO 消耗，提高访问速度。浏览器缓存机制有四个方面，它们按照获取资源时请求的优先级依次排列如下：</p>
+<ol>
+<li>Memory Cache</li>
+<li>Service Worker Cache</li>
+<li>HTTP Cache</li>
+<li>Push Cache<br><img src="http://pbzqi3myf.bkt.clouddn.com/13.png" alt="13" title="13"><br><img src="http://pbzqi3myf.bkt.clouddn.com/14.png" alt="14" title="14"></li>
+</ol>
+<h3 id="1-Memory-Cache"><a href="#1-Memory-Cache" class="headerlink" title="1.Memory Cache"></a>1.Memory Cache</h3><p>内存中的缓存，浏览器最先尝试命中的缓存，效率上，它是响应速度最快的缓存。<br>当进程结束后，也就是 tab 关闭以后，内存里的数据也将不复存在。<br>那么哪些文件会被放入内存呢？<br>我们发现，Base64 格式的图片，几乎永远可以被塞进 memory cache，这可以视作浏览器为节省渲染开销的“自保行为”；<br>此外，体积不大的 JS、CSS 文件，也有较大地被写入内存的几率；<br>相比之下，较大的 JS、CSS 文件就没有这个待遇了，内存资源是有限的，它们往往被直接甩进磁盘。</p>
+<h3 id="2-Service-Worker-Cache"><a href="#2-Service-Worker-Cache" class="headerlink" title="2.Service Worker Cache"></a>2.Service Worker Cache</h3><p>Service Worker 是一种独立于主线程之外的 Javascript 线程。脱离于浏览器窗体，因此无法直接访问 DOM。<br>这个“幕后工作者”可以帮我们实现离线缓存、消息推送和网络代理等功能。<br>借助 Service worker 实现的离线缓存就称为 Service Worker Cache。</p>
+<h3 id="3-HTTP-Cache"><a href="#3-HTTP-Cache" class="headerlink" title="3.HTTP Cache"></a>3.HTTP Cache</h3><p><img src="http://pbzqi3myf.bkt.clouddn.com/15.png" alt="15" title="15"></p>
+<ul>
+<li>Chrome官方给出的缓存决策图<br>当我们的资源内容不可复用时，直接为 Cache-Control 设置 no-store，拒绝一切形式的缓存；<br>否则考虑是否每次都需要向服务器进行缓存有效确认，如果需要，那么设 Cache-Control 的值为 no-cache；<br>否则考虑该资源是否可以被代理服务器缓存，根据其结果决定是设置为 private 还是 public；<br>然后考虑该资源的过期时间，设置对应的 max-age 和 s-maxage 值；<br>最后，配置协商缓存需要用到的 Etag、Last-Modified 等参数<br><img src="http://pbzqi3myf.bkt.clouddn.com/16.png" alt="16" title="16"></li>
+</ul>
+<h2 id="存储篇2：本地存储——Cookie-Web-Storage-indexDB"><a href="#存储篇2：本地存储——Cookie-Web-Storage-indexDB" class="headerlink" title="存储篇2：本地存储——Cookie/Web Storage/indexDB"></a>存储篇2：本地存储——Cookie/Web Storage/indexDB</h2><ul>
+<li><p>Cookie<br><img src="http://pbzqi3myf.bkt.clouddn.com/17.png" alt="17" title="17"></p>
+</li>
+<li><p>Web Storage<br><img src="http://pbzqi3myf.bkt.clouddn.com/18.png" alt="18" title="18"><br><img src="http://pbzqi3myf.bkt.clouddn.com/19.png" alt="19" title="19"><br><img src="http://pbzqi3myf.bkt.clouddn.com/20.png" alt="20" title="20"></p>
+</li>
+</ul>
+<h1 id="渲染篇1：服务端渲染"><a href="#渲染篇1：服务端渲染" class="headerlink" title="渲染篇1：服务端渲染"></a>渲染篇1：服务端渲染</h1><ul>
+<li><p>SSR：服务端渲染<br>服务端渲染的模式下，当用户第一次请求页面时，由服务器把需要的组件或页面渲染成 HTML 字符串，然后把它返回给客户端。<br>客户端拿到手的，是可以直接渲染然后呈现给用户的 HTML 内容，不需要为了生成 DOM 内容自己再去跑一遍 JS 代码。<br>使用服务端渲染的网站，可以说是“所见即所得”，页面上呈现的内容，我们在 html 源文件里也能找到。<br>比如知乎就是典型的服务端渲染案例：<br><img src="http://pbzqi3myf.bkt.clouddn.com/21.png" alt="21" title="21"></p>
+</li>
+<li><p>SSR：服务端渲染解决了什么性能问题？<br><strong style="color: red;">首屏加载速度过慢</strong>。在客户端渲染模式下，我们除了加载 HTML，还要等渲染所需的这部分 JS 加载完，之后还得把这部分 JS 在浏览器上再跑一遍。这一切都是发生在用户点击了我们的链接之后的事情，在这个过程结束之前，用户始终见不到我们网页的庐山真面目，也就是说用户一直在等！相比之下，服务端渲染模式下，服务器给到客户端的已经是一个直接可以拿来呈现给用户的网页，中间环节早在服务端就帮我们做掉了</p>
+</li>
+</ul>
+<p>SSR存在什么问题呢？<br>服务器资源稀少而宝贵，不到万不得已不使用</p>
+<h1 id="渲染篇2：浏览器端优化"><a href="#渲染篇2：浏览器端优化" class="headerlink" title="渲染篇2：浏览器端优化"></a>渲染篇2：浏览器端优化</h1><p>浏览器内核可以分成两部分：渲染引擎（Layout Engine 或者 Rendering Engine）和 JS 引擎。早期渲染引擎和 JS 引擎并没有十分明确的区分，但随着 JS 引擎越来越独立，内核也成了渲染引擎的代称（下文我们将沿用这种叫法）。渲染引擎又包括了 HTML 解释器、CSS 解释器、布局、网络、存储、图形、音视频、图片解码器等等零部件。<br><img src="http://pbzqi3myf.bkt.clouddn.com/22.png" alt="22" title="22"></p>
+<p>目前市面上常见的浏览器内核可以分为这四种：Trident（IE）、Gecko（火狐）、Blink（Chrome、Opera）、Webkit（Safari）。<br><img src="http://pbzqi3myf.bkt.clouddn.com/23.png" alt="23" title="23"><br><img src="http://pbzqi3myf.bkt.clouddn.com/24.png" alt="24" title="24"><br><img src="http://pbzqi3myf.bkt.clouddn.com/25.png" alt="25" title="25"></p>
+<h3 id="DOM操作"><a href="#DOM操作" class="headerlink" title="DOM操作"></a>DOM操作</h3><p>JS 引擎和渲染引擎（浏览器内核）是独立实现的。当我们用 JS 去操作 DOM 时，本质上是 JS 引擎和渲染引擎之间进行了“跨界交流。<br><img src="http://pbzqi3myf.bkt.clouddn.com/26.png" alt="26" title="26"></p>
+<p>当我们对 DOM 的修改会引发它外观（样式）上的改变时，就会触发回流或重绘。<br><img src="http://pbzqi3myf.bkt.clouddn.com/27.png" alt="27" title="27"></p>
+<ul>
+<li>回流：当我们对 DOM 的修改引发了 DOM 几何尺寸的变化（比如修改元素的宽、高或隐藏元素等）时，浏览器需要重新计算元素的几何属性（其他元素的几何属性和位置也会因此受到影响），然后再将计算的结果绘制出来。这个过程就是回流（也叫重排）</li>
+<li><p>重绘：当我们对 DOM 的修改导致了样式的变化、却并未影响其几何属性（比如修改了颜色或背景色）时，浏览器不需重新计算元素的几何属性、直接为该元素绘制新的样式（跳过了上图所示的回流环节）。这个过程叫做重绘。<br>由此我们可以看出，重绘不一定导致回流，回流一定会导致重绘。硬要比较的话，回流比重绘做的事情更多，带来的开销也更大。但这两个说到底都是吃性能的，所以都不是什么善茬。</p>
+</li>
+<li><p>怎么办？<br>1.减少DOM操作<br>2.考虑JS 的运行速度，比 DOM 快得多这个特性。我们减少 DOM 操作的核心思路，就是让 JS 去给 DOM 分压</p>
+<h3 id="Event-Loop与异步更新策略"><a href="#Event-Loop与异步更新策略" class="headerlink" title="Event Loop与异步更新策略"></a>Event Loop与异步更新策略</h3></li>
+<li>事件循环中的异步队列有两种：macro（宏任务）队列和 micro（微任务）队列。</li>
+<li>常见的 macro-task 比如： setTimeout、setInterval、 setImmediate、script（整体代码）、 I/O 操作、UI 渲染等。 </li>
+<li>常见的 micro-task 比如: process.nextTick、Promise、MutationObserver 等<br><img src="http://pbzqi3myf.bkt.clouddn.com/28.png" alt="28" title="28"></li>
+</ul>
+<p>一个完整的 Event Loop 过程，可以概括为以下阶段：</p>
+<ol>
+<li>初始状态：调用栈空。micro 队列空，macro 队列里有且只有一个 script 脚本（整体代码）。</li>
+<li>全局上下文（script 标签）被推入调用栈，同步代码执行。在执行的过程中，通过对一些接口的调用，可以产生新的 macro-task 与 micro-task，它们会分别被推入各自的任务队列里。同步代码执行完了，script 脚本会被移出 macro 队列，这个过程本质上是队列的 macro-task 的执行和出队的过程。</li>
+<li>上一步我们出队的是一个 macro-task，这一步我们处理的是 micro-task。但需要注意的是：当 macro-task 出队时，任务是一个一个执行的；而 micro-task 出队时，任务是一队一队执行的。因此，我们处理 micro 队列这一步，会逐个执行队列中的任务并把它出队，直到队列被清空。</li>
+<li><strong style="color: red">执行渲染操作，更新界面（敲黑板划重点）</strong>。</li>
+<li>检查是否存在 Web worker 任务，如果有，则对其进行处理 。<br>（上述过程循环往复，直到两个队列都清空）<br><img src="http://pbzqi3myf.bkt.clouddn.com/29.png" alt="29" title="29"></li>
+</ol>
+<p>我们更新 DOM 的时间点，应该尽可能靠近渲染的时机。<br>当我们需要在异步任务中实现 DOM 修改时，把它包装成 micro 任务是相对明智的选择。</p>
+<h3 id="回流与重绘"><a href="#回流与重绘" class="headerlink" title="回流与重绘"></a>回流与重绘</h3><ul>
+<li>最“贵”的操作：改变 DOM 元素的几何属性</li>
+<li>“价格适中”的操作：改变 DOM 树的结构</li>
+<li>最容易被忽略的操作：获取一些特定属性的值</li>
+</ul>
+<p>如何规避呢？</p>
+<ul>
+<li><p>将敏感属性缓存起来，避免频繁改动</p>
+</li>
+<li><p>避免逐条改变样式，使用类名去合并样式</p>
+</li>
+</ul>
+<h1 id="应用篇"><a href="#应用篇" class="headerlink" title="应用篇"></a>应用篇</h1><h3 id="懒加载"><a href="#懒加载" class="headerlink" title="懒加载"></a>懒加载</h3><p><img src="http://pbzqi3myf.bkt.clouddn.com/30.png" alt="30" title="30"><br><img src="http://pbzqi3myf.bkt.clouddn.com/31.png" alt="31" title="31"></p>
+<h3 id="事件的节流与去抖"><a href="#事件的节流与去抖" class="headerlink" title="事件的节流与去抖"></a>事件的节流与去抖</h3><p>输入框、滚动条、窗口resize……<br><img src="http://pbzqi3myf.bkt.clouddn.com/%E5%8E%BB%E6%8A%96%E8%8A%82%E6%B5%81.gif" alt="节流去抖" title="节流去抖"></p>
+<h1 id="前端性能检测——可视化检测"><a href="#前端性能检测——可视化检测" class="headerlink" title="前端性能检测——可视化检测"></a>前端性能检测——可视化检测</h1><p>Performance面板<br><img src="http://pbzqi3myf.bkt.clouddn.com/32.png" alt="32" title="32"></p>
+<p>可视化检测LightHouse<br><img src="http://pbzqi3myf.bkt.clouddn.com/33.png" alt="33" title="33"></p>
+<p>可编程性能上报方案——W3C性能API<br><img src="http://pbzqi3myf.bkt.clouddn.com/31.png" alt="34" title="34"><br>关键性能指标：firstbyte、fpt、tti、ready 和 load 时间</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/13/雅虎35条军规——前端性能优化/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1731,7 +2007,7 @@
                 
                   <a href="/archives">
                 
-                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
